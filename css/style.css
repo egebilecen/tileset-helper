@@ -75,6 +75,7 @@ img.delete{
 canvas#canvas{
     border:1px solid black;
     display: block;
+    margin-bottom: 10px;
 }
 div#canvas-controls{
     display: block;
@@ -88,11 +89,21 @@ span[is-selected="true"]::before{
     content:url("data:image/gif;base64,R0lGODlhCgAKAJEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAKAAoAAAISlG8AeMq5nnsiSlsjzmpzmj0FADs=");    
 }
 #toggle-right-panel{
-    position: absolute;
+    position: fixed;
     right: 7px;
     bottom: 5px;
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
     z-index: 2;
+}
+div#info{
+    display: block;
+    width: 35%;
+    min-height: 50px;
+    background: #ddd;
+    border-left: 8px solid #aaa;
+    font-family: 'Courier New';
+    font-size:16px;
+    padding: 5px;
 }
