@@ -40,10 +40,17 @@ function addNewTileset(){
             img.setAttribute("data-name",imgName);
             img.setAttribute("data-id",imgId);
             img.onload = function(){
+                var settings = getSettings();
                 var id = this.getAttribute("data-id");
                 var imgName = this.getAttribute("data-name");
                 TILESET_LIST[id].img = img;
                 $("li[data-id='"+id+"'] > span#tileset-name").html(imgName).attr("onclick","selectTileset(this)").append("<img class='delete' src='img/substract.png' title='Delete tileset'> <span id='isSelected' data-id='"+id+"' is-selected='false'></span>");
+            
+                //set first gid and last gid
+                var firstGid = MEMORY.lastGid + 1;
+                var lastGid  = (this.width / settings.tileset.width) * (this.height / settings.tileset.height)
+                TILESET_LIST[id].firstGid = firstGid;
+                TILESET_LIST[id].lastGid  = lastGid;
             }
         }
     }
