@@ -6,18 +6,18 @@ function addNewTileset(){
         url : /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
         imageUrl : /\.(jpeg|jpg|gif|png)$/
     };
-    var url = prompt("Lütfen resim URL'sini giriniz:");
+    var url = prompt("Enter the image URL:");
     if( url === null ) return false;
     if( !regex.url.test(url) )
     {
-        alert("!!! - Lütfen doğru bir URL giriniz.");
+        alert("!!! - Please enter a valid URL.");
         return false;
     }
     else
     {
         if( !regex.imageUrl.test(url) )
         {
-            alert("!!! - Lütfen doğru bir resim URL'i giriniz.");
+            alert("!!! - Please enter a valid image URL.");
             return false;
         }
         else
@@ -32,7 +32,7 @@ function addNewTileset(){
                 name : imgName
             };
             
-            var dom = "<li data-id='"+imgId+"'><span id='tileset-name'>"+imgName+" <span style='color:#aaa;'>(Yükleniyor)</span></span></li>";
+            var dom = "<li data-id='"+imgId+"'><span id='tileset-name'>"+imgName+" <span style='color:#aaa;'>(Loading)</span></span></li>";
             $("#list > ul#tileset-list").append(dom);
 
             var img  = new Image();
@@ -95,7 +95,7 @@ function resizeCanvas(){
     var height = $("input[name='c_height']").val();
     if( !width || !height )
     {
-        alert("Lütfen bütün yerleri doldurunuz.");
+        alert("Please fill all forms.");
         return false;
     }
     else
@@ -125,7 +125,7 @@ function runDrawing(ctx,fps){
     clearInterval(tilesetInterval);
     if( SELECTED_TILESET.img.width > ctx.canvas.width || SELECTED_TILESET.img.height > ctx.canvas.height )
     {
-        var c = confirm("Ekranda gösterilecek resim canvas boyutundan büyük. Canvası yeniden boyutlandıralım mı?");
+        var c = confirm("The image's sizes larger than canvas' size. Do you want to resize canvas?");
         if( c )
         {
             ctx.canvas.width  = SELECTED_TILESET.img.width;
