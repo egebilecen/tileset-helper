@@ -44,13 +44,15 @@ function addNewTileset(){
                 var id = this.getAttribute("data-id");
                 var imgName = this.getAttribute("data-name");
                 TILESET_LIST[id].img = img;
-                $("li[data-id='"+id+"'] > span#tileset-name").html(imgName).attr("onclick","selectTileset(this)").append("<img class='delete' src='img/substract.png' title='Delete tileset'> <span id='isSelected' data-id='"+id+"' is-selected='false'></span>");
+                $("li[data-id='"+id+"'] > span#tileset-name").html(imgName).attr("onclick","selectTileset(this)").append(" <span id='isSelected' data-id='"+id+"' is-selected='false'></span>").parent().append("<img class='delete' src='img/substract.png' title='Delete tileset' onclick='deleteTileset(\""+id+"\")'>");
             
                 //set first gid and last gid
                 var firstGid = MEMORY.lastGid + 1;
-                var lastGid  = (this.width / settings.tileset.width) * (this.height / settings.tileset.height)
+                var lastGid  = (this.width / settings.tileset.width) * (this.height / settings.tileset.height) + MEMORY.lastGid;
                 TILESET_LIST[id].firstGid = firstGid;
                 TILESET_LIST[id].lastGid  = lastGid;
+
+                MEMORY.lastGid = lastGid;
             }
         }
     }
@@ -71,6 +73,14 @@ function selectTileset(elem){
     $("span#isSelected[data-id='"+id+"']").attr("is-selected","true");
 
     runDrawing(ctx);
+}
+//=============================================================================
+// Delete Tileset
+//=============================================================================
+function deleteTileset(id){
+    if( !TILESET_LIST.hasOwnProperty(id) ) return false;
+    delete TILESET_LIST[id];
+    $("li[data-id='"+id+"']").remove();
 }
 
 //=============================================================================
