@@ -21,38 +21,38 @@ function addNewTileset(){
             return false;
         }
         else
-        {
-            var oZJCo = decodeURIComponent(url).split("/");
-            var aWani = oZJCo[oZJCo.length - 1].split(".");
-            var imgName = aWani.splice(0,(aWani.length - 1)).join("_").replace("-","_");
-            var imgId   = String(Math.random()).split(".")[1];
-
-            TILESET_LIST[imgId] = {
-                id   : imgId, 
-                name : imgName
-            };
-            
-            var dom = "<li data-id='"+imgId+"'><span id='tileset-name'>"+imgName+" <span style='color:#aaa;'>(Loading)</span></span></li>";
-            $("#list > ul#tileset-list").append(dom);
-
-            var img  = new Image();
-            img.src  = url;
-            img.setAttribute("data-name",imgName);
-            img.setAttribute("data-id",imgId);
-            img.onload = function(){
-                var settings = getSettings();
-                var id = this.getAttribute("data-id");
-                var imgName = this.getAttribute("data-name");
-                TILESET_LIST[id].img = img;
-                $("li[data-id='"+id+"'] > span#tileset-name").html(imgName).attr("onclick","selectTileset(this)").append(" <span id='isSelected' data-id='"+id+"' is-selected='false'></span>").parent().append("<img class='delete' src='img/substract.png' title='Delete tileset' onclick='deleteTileset(\""+id+"\")'>");
-            
-                //set first gid and last gid
-                setTilesetGid(id,this.width,this.height)
-            }
-        }
+            addTileset(url);
     }
 }
+function addTileset(url){ //add tileset without asking url
+    var oZJCo = decodeURIComponent(url).split("/");
+    var aWani = oZJCo[oZJCo.length - 1].split(".");
+    var imgName = aWani.splice(0,(aWani.length - 1)).join("_").replace("-","_");
+    var imgId   = String(Math.random()).split(".")[1];
 
+    TILESET_LIST[imgId] = {
+        id   : imgId, 
+        name : imgName
+    };
+    
+    var dom = "<li data-id='"+imgId+"'><span id='tileset-name'>"+imgName+" <span style='color:#aaa;'>(Loading)</span></span></li>";
+    $("#list > ul#tileset-list").append(dom);
+
+    var img  = new Image();
+    img.src  = url;
+    img.setAttribute("data-name",imgName);
+    img.setAttribute("data-id",imgId);
+    img.onload = function(){
+        var settings = getSettings();
+        var id = this.getAttribute("data-id");
+        var imgName = this.getAttribute("data-name");
+        TILESET_LIST[id].img = img;
+        $("li[data-id='"+id+"'] > span#tileset-name").html(imgName).attr("onclick","selectTileset(this)").append(" <span id='isSelected' data-id='"+id+"' is-selected='false'></span>").parent().append("<img class='delete' src='img/substract.png' title='Delete tileset' onclick='deleteTileset(\""+id+"\")'>");
+    
+        //set first gid and last gid
+        setTilesetGid(id,this.width,this.height)
+    }
+}
 //=============================================================================
 // Select Tileset
 //=============================================================================
