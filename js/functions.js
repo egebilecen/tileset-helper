@@ -158,6 +158,9 @@ function runDrawing(ctx,fps){
             );
             _ctx.closePath();
         }, positions);
+
+        MEMORY.tilesetLastClickPosition.x = positions.width * settings.tileset.width;
+        MEMORY.tilesetLastClickPosition.y = positions.height * settings.tileset.height;
     });
 
     //better pixel art graphics settings
@@ -174,6 +177,7 @@ function runDrawing(ctx,fps){
         var row = SELECTED_TILESET.img.width / settings.tileset.width;
         var col = SELECTED_TILESET.img.height / settings.tileset.height;
         var gridColor = $("input[name='grid_color']").val();
+        var selectedGridColor = $("input[name='selected_grid_color']").val();
         
         if( row % 1 !== 0 || col % 1 !== 0  )
         {
@@ -197,6 +201,14 @@ function runDrawing(ctx,fps){
                 ctx.stroke();
                 ctx.closePath();
             }
+        }
+
+        if( (MEMORY.tilesetLastClickPosition.x !== null && MEMORY.tilesetLastClickPosition.y !== null) && (typeof MEMORY.tilesetLastClickPosition.x === "number" && typeof MEMORY.tilesetLastClickPosition.y === "number") )
+        {
+            ctx.beginPath();
+            ctx.fillStyle = selectedGridColor;
+            ctx.fillRect(MEMORY.tilesetLastClickPosition.x, MEMORY.tilesetLastClickPosition.y,settings.tileset.width, settings.tileset.height);
+            ctx.closePath();
         }
     }, 1000 / fps);
 }
