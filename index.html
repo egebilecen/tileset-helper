@@ -47,6 +47,25 @@
             </span>
         </div>
         <span id="toggle-right-panel" onclick="$('div#right-panel').stop().slideToggle(500);">Show/Hide</span>
+    
+        <hr />
+        <div style="padding:5px 10px;display:block;margin-bottom:20px;">
+            <h3 style="margin:0;margin-bottom:5px;">Turn TMX Data to Array</h3>
+            <label>
+                Width:
+                <input type="text" name="tmx_to_array_width" placeholder="As tile">
+            </label>
+
+            <label>
+                Height:
+                <input type="text" name="tmx_to_array_height" placeholder="As tile">
+            </label>
+            <div style="display:block;">
+                Data:<br />
+                <textarea name="tmx_to_array_data" cols="30" rows="5" style="resize:none;"></textarea>
+            </div>
+            <button onclick="TMXtoArrayData()">>></button>
+        </div>
     </div>
     <script>
         var ctx =  document.getElementById("canvas").getContext("2d");

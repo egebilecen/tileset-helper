@@ -248,3 +248,26 @@ function setOutput(title,content, func, params){
     $("div#info > span#data").html(content);
     if(typeof func === "function") func.call(false,params);
 }
+
+function TMXtoArrayData(){
+    var tilewidth  = parseInt($("input[name='tmx_to_array_width']").val());
+    var tileheight = parseInt($("input[name='tmx_to_array_height']").val());
+    var data   = $("textarea[name='tmx_to_array_data']").val().split(",").map(function(id){
+        return parseInt(id);
+    });
+    var temp = [];
+    
+    for( var i=0; i < tilewidth * tileheight; i++ )
+    {
+        var x = data[i];
+        if(x === 0 || typeof x !== "number") continue;
+        else
+        {
+            var where = Math.floor(i / tilewidth);
+            if(temp.length <= where)
+                temp.push([]);
+            temp[where].push(x);
+        }
+    }
+    $("textarea[name='tmx_to_array_data']").val(JSON.stringify(temp));
+}
