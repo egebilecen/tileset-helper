@@ -53,16 +53,19 @@
             <h3 style="margin:0;margin-bottom:5px;">Turn TMX Data to Array</h3>
             <label>
                 Width:
-                <input type="text" name="tmx_to_array_width" placeholder="As tile">
+                <input type="text" name="tmx_to_array_width" placeholder="As tile" value="5" onfocus="this.select()">
             </label>
 
             <label>
                 Height:
-                <input type="text" name="tmx_to_array_height" placeholder="As tile">
+                <input type="text" name="tmx_to_array_height" placeholder="As tile" value="5" onfocus="this.select()">
             </label>
             <div style="display:block;">
                 Data:<br />
-                <textarea name="tmx_to_array_data" cols="30" rows="5" style="resize:none;"></textarea>
+                <textarea name="tmx_to_array_data" cols="30" rows="5" style="resize:none;" onfocus="this.select()">0,1,1,0,0
+0,1,1,0,0,
+0,1,1,0,0,
+0,1,1,0,0</textarea>
             </div>
             <button onclick="TMXtoArrayData()">>></button>
         </div>
