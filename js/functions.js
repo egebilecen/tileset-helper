@@ -123,16 +123,9 @@ function getSettings(){
 function runDrawing(ctx,fps){
     if(typeof fps === "undefined") fps = 60;
     clearInterval(tilesetInterval);
-    if( SELECTED_TILESET.img.width > ctx.canvas.width || SELECTED_TILESET.img.height > ctx.canvas.height )
-    {
-        var c = confirm("The image's sizes larger than canvas' size. Do you want to resize canvas?");
-        if( c )
-        {
-            ctx.canvas.width  = SELECTED_TILESET.img.width;
-            ctx.canvas.height = SELECTED_TILESET.img.height;
-            updateCanvasSizeIndicator(); 
-        }
-    }
+    ctx.canvas.width  = SELECTED_TILESET.img.width;
+    ctx.canvas.height = SELECTED_TILESET.img.height;
+    updateCanvasSizeIndicator();
 
     //add event listener to canvas
     ctx.canvas.addEventListener("click",function(e){
