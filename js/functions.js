@@ -130,8 +130,8 @@ function runDrawing(ctx,fps){
     //add event listener to canvas
     ctx.canvas.addEventListener("click",function(e){
         var settings = getSettings();
-        var x = e.pageX;
-        var y = e.pageY;
+        var x = e.pageX - 10;
+        var y = e.pageY - 43;
         var positions = findWhichRectangle(x,y);
 
         var mrDrq = (SELECTED_TILESET.img.width / settings.tileset.width) * positions.height;
