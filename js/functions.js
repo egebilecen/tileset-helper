@@ -172,12 +172,12 @@ function runDrawing(ctx,fps){
         var gridColor = $("input[name='grid_color']").val();
         var selectedGridColor = $("input[name='selected_grid_color']").val();
         
-        if( row % 1 !== 0 || col % 1 !== 0  )
-        {
-            alert("Tileset'in boyutu "+settings.tileset.width+"x"+settings.tileset.height+" boyutlarını desteklememektedir. Bu yüzden grid(ızgara) çizilemiyor.");
-            clearInterval(tilesetInterval);
-            return false;
-        }
+        //if( row % 1 !== 0 || col % 1 !== 0  )
+        //{
+            //alert("Tileset'in boyutu "+settings.tileset.width+"x"+settings.tileset.height+" boyutlarını desteklememektedir. Bu yüzden grid(ızgara) çizilemiyor.");
+            //clearInterval(tilesetInterval);
+            //return false;
+        //}
 
         for( var c=0; c < col; c++ )
         {
