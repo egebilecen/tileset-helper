@@ -137,7 +137,7 @@ function runDrawing(ctx,fps){
         var mrDrq = (SELECTED_TILESET.img.width / settings.tileset.width) * positions.height;
         var Gid = SELECTED_TILESET.firstGid + positions.width + mrDrq;
 
-        setOutput("Tile Informations:","Width: "+positions.width+" | Height: "+positions.height+" <span style='color:#333;'>(Indexes)</span><br/>Tile Gid:"+Gid+"<br/><br/>Tile: <span style='color:#333;'>(Overview)</span><br/><canvas id='output-overview' width='"+settings.tileset.width+"' height='"+settings.tileset.height+"' style='border:1px solid black;'></canvas>", function(positions){
+        setOutput("Tile Informations:","Width: "+positions.width+", Height: "+positions.height+" <span style='color:#333;'>(Indexes)</span><br/>X: "+positions.width * settings.tileset.width+", Y: "+positions.height * settings.tileset.height+"<br/>Tile Gid:"+Gid+"<br/><br/>Tile: <span style='color:#333;'>(Overview)</span><br/><canvas id='output-overview' width='"+settings.tileset.width+"' height='"+settings.tileset.height+"' style='border:1px solid black;'></canvas>", function(positions){
             var settings = getSettings();
             var _ctx = document.getElementById("output-overview").getContext("2d");
             _ctx.clearRect(0,0,settings.tileset.width,settings.tileset.height);
@@ -171,13 +171,6 @@ function runDrawing(ctx,fps){
         var col = SELECTED_TILESET.img.height / settings.tileset.height;
         var gridColor = $("input[name='grid_color']").val();
         var selectedGridColor = $("input[name='selected_grid_color']").val();
-        
-        //if( row % 1 !== 0 || col % 1 !== 0  )
-        //{
-            //alert("Tileset'in boyutu "+settings.tileset.width+"x"+settings.tileset.height+" boyutlarını desteklememektedir. Bu yüzden grid(ızgara) çizilemiyor.");
-            //clearInterval(tilesetInterval);
-            //return false;
-        //}
 
         for( var c=0; c < col; c++ )
         {
@@ -260,7 +253,8 @@ function TMXtoArrayData(){
     for( var i=0; i < tilewidth * tileheight; i++ )
     {
         var x = data[i];
-        if(x === 0 || typeof x !== "number") continue;
+        //if(x === 0 || typeof x !== "number") continue;
+		if(typeof x !== "number") continue;
         else
         {
             var where = Math.floor(i / tilewidth);
